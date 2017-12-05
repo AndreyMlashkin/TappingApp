@@ -8,18 +8,18 @@ import java.util.ArrayList;
 
 public class TempoCalculator {
     private static final Long MILLISECONDS_IN_A_MINUTE = 60000L;
-    public ArrayList<Long> times;
-    private boolean isRecording;
+    public ArrayList<Long> m_times;
+    private boolean m_isRecording;
 
     public TempoCalculator() {
-        times = new ArrayList<Long>();
-        isRecording = false;
+        m_times = new ArrayList<Long>();
+        m_isRecording = false;
     }
 
     public void recordTime() {
         Long time = System.currentTimeMillis();
-        times.add(time);
-        isRecording = true;
+        m_times.add(time);
+        m_isRecording = true;
     }
 
     public int getTempo() {
@@ -28,15 +28,15 @@ public class TempoCalculator {
     }
 
     public void clearTimes() {
-        times.clear();
-        isRecording = false;
+        m_times.clear();
+        m_isRecording = false;
     }
 
     private ArrayList<Long> getDeltas() {
         ArrayList<Long> deltas = new ArrayList<Long>();
 
-        for (int i = 0; i < times.size() - 1; i++) {
-            Long delta = times.get(i + 1) - times.get(i);
+        for (int i = 0; i < m_times.size() - 1; i++) {
+            Long delta = m_times.get(i + 1) - m_times.get(i);
             deltas.add(delta);
         }
 
@@ -56,6 +56,6 @@ public class TempoCalculator {
     }
 
     public boolean isRecording() {
-        return isRecording;
+        return m_isRecording;
     }
 }

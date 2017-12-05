@@ -2,8 +2,6 @@ package com.example.tanlin.mytapper;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.app.Activity;
-import android.content.Context;
 import android.graphics.Typeface;
 import android.graphics.drawable.TransitionDrawable;
 import android.view.MotionEvent;
@@ -16,14 +14,14 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
 
     public static long RESET_DURATION = 2000;
-    TempoCalculator tempoCalculator;
-    Timer timer;
+    TempoCalculator m_tempoCalculator;
+    Timer m_timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tempoCalculator = new TempoCalculator();
+        m_tempoCalculator = new TempoCalculator();
     }
 
     @Override
@@ -34,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        if (timer != null) {
-            timer.cancel();
+        if (m_timer != null) {
+            m_timer.cancel();
         }
 
-        tempoCalculator.clearTimes();
+        m_tempoCalculator.clearTimes();
         super.onDestroy();
     }
 
@@ -81,13 +79,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void handleTouch() {
         //saturateBackground();
-        tempoCalculator.recordTime();
+        m_tempoCalculator.recordTime();
         restartResetTimer();
         updateView();
     }
 
     private void saturateBackground() {
-        if (!tempoCalculator.isRecording()) {
+        if (!m_tempoCalculator.isRecording()) {
             View view = (View) findViewById(R.id.appView);
             TransitionDrawable background = (TransitionDrawable) view
                     .getBackground();
@@ -105,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
     private void updateView() {
         String displayValue;
 
-        if (tempoCalculator.times.size() >= 2) {
-            double tempo = tempoCalculator.getTempo();
+        if (m_tempoCalculator.m_times.size() >= 2) {
+            double tempo = m_tempoCalculator.getTempo();
             displayValue = Double.valueOf(tempo).toString();
         } else {
             displayValue = "tap_again";
@@ -122,12 +120,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startResetTimer() {
-        timer = new Timer("reset-tempo-calculator", true);
-        timer.schedule(new TimerTask() {
+        m_timer = new Timer("reset-tempo-calculator", true);
+        m_timer.schedule(new TimerTask() {
 
             @Override
             public void run() {
-                tempoCalculator.clearTimes();
+                m_tempoCalculator.clearTimes();
                 runOnUiThread(new Runnable() {
 
                     @Override
@@ -140,8 +138,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void stopResetTimer() {
-        if (timer != null) {
-            timer.cancel();
+        if (m_timer != null) {
+            m_timer.cancel();
         }
     }
 }
