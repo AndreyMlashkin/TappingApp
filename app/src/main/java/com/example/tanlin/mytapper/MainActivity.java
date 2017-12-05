@@ -59,14 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
         TextView tempoTextView = (TextView) findViewById(R.id.tempoTextView);
         tempoTextView.setTypeface(font);
-
-        TextView tapButtonView = (TextView) findViewById(R.id.tapButtonView);
-        tapButtonView.setTypeface(font);
     }
 
     private void setupTouchListener() {
-        View tapButton = (View) findViewById(R.id.tapButtonView);
-        tapButton.setOnTouchListener(new OnTouchListener() {
+        View view = (View) findViewById(R.id.appView);
+        view.setOnTouchListener(new OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     handleTouch();

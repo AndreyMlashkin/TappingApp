@@ -27,16 +27,6 @@
         android:text="initial_bpm_value"
         android:textSize="40sp" />
 
-    <Button
-        android:id="@+id/tapButtonView"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_above="@+id/instructionalLabelTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"
-        android:text="tap"
-        android:textSize="90sp" />
-
     <TextView
         android:id="@+id/instructionalLabelTextView"
         android:layout_width="wrap_content"
