@@ -8,6 +8,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -16,12 +18,19 @@ public class MainActivity extends AppCompatActivity {
     public static long RESET_DURATION = 2000;
     TempoCalculator m_tempoCalculator;
     Timer m_timer;
+    ArrayList<Long> m_rythm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         m_tempoCalculator = new TempoCalculator();
+
+        m_rythm = new ArrayList<>();
+        for(int i = 0; i < 360; ++i)
+        {
+            m_rythm.add(1000L);
+        }
     }
 
     @Override
@@ -84,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void saturateBackground()
     {
-        if (!m_tempoCalculator.isRecording()) {
+        if (!m_tempoCalculator.isRecording())
+        {
             View view = (View) findViewById(R.id.appView);
             view.setBackgroundColor(0xFFED1139);
         }
@@ -109,7 +119,14 @@ public class MainActivity extends AppCompatActivity {
         tempoTextView.setText(displayValue);
 
         TextView clickTimes = (TextView) findViewById(R.id.times);
-        clickTimes.setText(m_tempoCalculator.getDeltas().toString());
+        String deltasText = m_tempoCalculator.getDeltas().toString();
+        deltasText = deltasText.replace(", ", "\n");
+        clickTimes.setText(deltasText);
+
+        TextView rythm = (TextView) findViewById(R.id.rythm);
+        String rythmText = m_rythm.toString();
+        rythmText = rythmText.replace(", ", "\n");
+        rythm.setText(rythmText);
     }
 
     private void restartResetTimer() {
