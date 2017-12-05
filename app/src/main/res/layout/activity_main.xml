@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/appView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.tanlin.mytapper.MainActivity">
+
+    <TextView
+        android:id="@+id/tempoLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="tempo"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/tempoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tempoLabelTextView"
+        android:layout_centerHorizontal="true"
+        android:text="initial_bpm_value"
+        android:textSize="40sp" />
+
+    <Button
+        android:id="@+id/tapButtonView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_above="@+id/instructionalLabelTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:text="tap"
+        android:textSize="90sp" />
+
+    <TextView
+        android:id="@+id/instructionalLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp"
+        android:text="reset_instructions"/>
+</RelativeLayout>
+
+
