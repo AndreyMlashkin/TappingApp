@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class TempoCalculator {
     private static final Long MILLISECONDS_IN_A_MINUTE = 60000L;
-    public ArrayList<Long> m_times;
+    private ArrayList<Long> m_times;
     private boolean m_isRecording;
 
     public TempoCalculator() {
@@ -22,7 +22,10 @@ public class TempoCalculator {
         m_isRecording = true;
     }
 
-    public int getTempo() {
+    public int getTempo()
+    {
+        if(m_times.size() < 2)
+            return -1;
         ArrayList<Long> deltas = getDeltas();
         return calculateTempo(deltas);
     }
@@ -32,7 +35,7 @@ public class TempoCalculator {
         m_isRecording = false;
     }
 
-    private ArrayList<Long> getDeltas() {
+    public ArrayList<Long> getDeltas() {
         ArrayList<Long> deltas = new ArrayList<Long>();
 
         for (int i = 0; i < m_times.size() - 1; i++) {

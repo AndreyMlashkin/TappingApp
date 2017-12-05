@@ -100,15 +100,17 @@ public class MainActivity extends AppCompatActivity {
     private void updateView() {
         String displayValue;
 
-        if (m_tempoCalculator.m_times.size() >= 2) {
-            double tempo = m_tempoCalculator.getTempo();
+        double tempo = m_tempoCalculator.getTempo();
+        if(tempo > 0)
             displayValue = Double.valueOf(tempo).toString();
-        } else {
+        else
             displayValue = "tap_again";
-        }
 
         TextView tempoTextView = (TextView) findViewById(R.id.tempoTextView);
         tempoTextView.setText(displayValue);
+
+        TextView clickTimes = (TextView) findViewById(R.id.times);
+        clickTimes.setText(m_tempoCalculator.getDeltas().toString());
     }
 
     private void restartResetTimer() {
