@@ -61,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
         tempoTextView.setTypeface(font);
     }
 
-    private void setupTouchListener() {
+    private void setupTouchListener()
+    {
         View view = (View) findViewById(R.id.appView);
         view.setOnTouchListener(new OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
@@ -75,26 +76,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleTouch() {
-        //saturateBackground();
+        saturateBackground();
         m_tempoCalculator.recordTime();
         restartResetTimer();
         updateView();
     }
 
-    private void saturateBackground() {
+    private void saturateBackground()
+    {
         if (!m_tempoCalculator.isRecording()) {
             View view = (View) findViewById(R.id.appView);
-            TransitionDrawable background = (TransitionDrawable) view
-                    .getBackground();
-            background.startTransition((int) RESET_DURATION);
+            view.setBackgroundColor(0xFFED1139);
         }
     }
 
-    private void resetBackground() {
+    private void resetBackground()
+    {
         View view = (View) findViewById(R.id.appView);
-        TransitionDrawable background = (TransitionDrawable) view
-                .getBackground();
-        background.reverseTransition((int) (RESET_DURATION / 5));
+        view.setBackgroundColor(0xFF11E6ED);
     }
 
     private void updateView() {
@@ -128,8 +127,10 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
 
                     @Override
-                    public void run() {
-                        //resetBackground();
+                    public void run()
+                    {
+                        resetBackground();
+                        updateView();
                     }
                 });
             }
